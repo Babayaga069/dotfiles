@@ -2,9 +2,9 @@
 set -e
 DOTFILES="$HOME/.dotfiles"
 
+# Pakete
 echo "-> Pakete installieren..."
 sudo apt install -y git zsh neovim tmux
-
 sudo apt install -y fzf zsh zsh-autosuggestions w3m xclip ddgr
 
 echo "→ Lazygit installieren..."
@@ -13,6 +13,15 @@ curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/
 tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
 sudo install /tmp/lazygit -D -t /usr/local/bin/
 
+# Alacritty nur wenn GUI vorhanden
+if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+  echo "→ Alacritty installieren..."
+  sudo apt install -y alacritty
+else
+  echo "→ Kein Display gefunden, Alacritty wird übersprungen"
+fi
+
+# Symlinks
 echo "→ Symlinks setzen..."
 ln -sf "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
