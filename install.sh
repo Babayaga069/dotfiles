@@ -4,14 +4,13 @@ DOTFILES="$HOME/.dotfiles"
 
 # Pakete
 echo "-> Pakete installieren..."
-sudo apt install -y git zsh neovim tmux
-sudo apt install -y fzf zsh zsh-autosuggestions w3m xclip ddgr
+sudo apt install -y git zsh neovim tmux fzf zsh-autosuggestions w3m xclip ddgr lazygit
 
-echo "→ Lazygit installieren..."
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
-curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
-sudo install /tmp/lazygit -D -t /usr/local/bin/
+#echo "→ Lazygit installieren..."
+#LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
+#curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+#tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
+#sudo install /tmp/lazygit -D -t /usr/local/bin/
 
 # Alacritty nur wenn GUI vorhanden
 if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
